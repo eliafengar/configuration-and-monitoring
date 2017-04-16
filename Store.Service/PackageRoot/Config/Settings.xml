@@ -14,6 +14,6 @@
   </Section>
   -->
   <Section Name="MongoDB">
-    <Parameter Name="ConnectionString" Value="mongodb://config-and-monitor:vHTqnptKFhIRgF0TEpGUKU8Ju8kDwXAVINeVh03RIVmxtWguzFp1ym0UmQlzlS2YKw2FQTsS5sHZesy3XK0ggA==@config-and-monitor.documents.azure.com:10250/?ssl=true" />
+    <Parameter Name="ConnectionString" Value="mongodb://host:27017" />
   </Section>
 </Settings>
