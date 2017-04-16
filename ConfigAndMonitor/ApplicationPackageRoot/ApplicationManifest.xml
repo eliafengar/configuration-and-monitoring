@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="ConfigAndMonitorType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="WebFrontendServiceType_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="StoreService_PartitionCount" DefaultValue="5" />
+    <Parameter Name="StoreService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="StoreService_TargetReplicaSetSize" DefaultValue="2" />
+    <Parameter Name="TigerAdapterActor_PartitionCount" DefaultValue="10" />
+    <Parameter Name="TigerAdapterActor_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="TigerAdapterActor_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="LionAdapterActor_PartitionCount" DefaultValue="10" />
+    <Parameter Name="LionAdapterActor_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="LionAdapterActor_TargetReplicaSetSize" DefaultValue="3" />
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="Store.ServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="Web.ServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="Adapter.ActorPkg" ServiceManifestVersion="1.0.0" />
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- The section below creates instances of service types, when an instance of this 
+         application type is created. You can also create one or more instances of service type using the 
+         ServiceFabric PowerShell module.
+         
+         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="WebFrontendService">
+      <StatelessService ServiceTypeName="WebFrontendServiceType" InstanceCount="[WebFrontendServiceType_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="StoreService">
+      <StatefulService ServiceTypeName="StoreServiceType" TargetReplicaSetSize="[StoreService_TargetReplicaSetSize]" MinReplicaSetSize="[StoreService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[StoreService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="TigerAdapterActor" GeneratedIdRef="56d1025a-ad07-4e01-8ae0-ae1ca6c553ea|Persisted">
+      <StatefulService ServiceTypeName="TigerAdapterActorType" TargetReplicaSetSize="[TigerAdapterActor_TargetReplicaSetSize]" MinReplicaSetSize="[TigerAdapterActor_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[TigerAdapterActor_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="LionAdapterActor" GeneratedIdRef="bc2912d3-45f6-4191-99ff-99d382362fe4|Persisted">
+      <StatefulService ServiceTypeName="LionAdapterActorType" TargetReplicaSetSize="[LionAdapterActor_TargetReplicaSetSize]" MinReplicaSetSize="[LionAdapterActor_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[LionAdapterActor_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>

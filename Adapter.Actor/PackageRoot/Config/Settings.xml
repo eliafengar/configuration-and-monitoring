@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Section Name="TigerAdapterActorReplicatorConfig">
+    <Parameter Name="ReplicatorEndpoint" Value="TigerAdapterActorReplicatorEndpoint" />
+    <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
+  </Section>
+  <Section Name="TigerAdapterActorReplicatorSecurityConfig">
+    <Parameter Name="CredentialType" Value="None" />
+  </Section>
+  <Section Name="LionAdapterActorReplicatorConfig">
+    <Parameter Name="ReplicatorEndpoint" Value="LionAdapterActorReplicatorEndpoint" />
+    <Parameter Name="BatchAcknowledgementInterval" Value="0.005" />
+  </Section>
+  <Section Name="LionAdapterActorReplicatorSecurityConfig">
+    <Parameter Name="CredentialType" Value="None" />
+  </Section>
+  <Section Name="StoreService">
+    <Parameter Name="StoreServiceUri" Value="fabric:/ConfigAndMonitor/StoreService" />
+    <Parameter Name="StoreServicePartitionKey" Value="1" />
+  </Section>
+</Settings>

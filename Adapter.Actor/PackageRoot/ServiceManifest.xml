@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="Adapter.ActorPkg" Version="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <ServiceTypes>
+    <StatefulServiceType ServiceTypeName="TigerAdapterActorType" HasPersistedState="true">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="56d1025a-ad07-4e01-8ae0-ae1ca6c553ea|Persisted">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="TigerAdapterActor" />
+            <ServiceEndpoint Name="TigerAdapterActorEndpoint" />
+            <ReplicatorEndpoint Name="TigerAdapterActorReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="TigerAdapterActorReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="TigerAdapterActorReplicatorSecurityConfig" />
+            <StoreConfigSection Name="TigerAdapterActorLocalStoreConfig" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+    <StatefulServiceType ServiceTypeName="LionAdapterActorType" HasPersistedState="true">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="bc2912d3-45f6-4191-99ff-99d382362fe4|Persisted">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="LionAdapterActor" />
+            <ServiceEndpoint Name="LionAdapterActorEndpoint" />
+            <ReplicatorEndpoint Name="LionAdapterActorReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="LionAdapterActorReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="LionAdapterActorReplicatorSecurityConfig" />
+            <StoreConfigSection Name="LionAdapterActorLocalStoreConfig" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+  </ServiceTypes>
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>Adapter.Actor.exe</Program>
+      </ExeHost>
+    </EntryPoint>
+  </CodePackage>
+  <ConfigPackage Name="Config" Version="1.0.0" />
+  <Resources>
+    <Endpoints>
+      <Endpoint Name="TigerAdapterActorEndpoint" />
+      <Endpoint Name="TigerAdapterActorReplicatorEndpoint" />
+      <Endpoint Name="LionAdapterActorEndpoint" />
+      <Endpoint Name="LionAdapterActorReplicatorEndpoint" />
+    </Endpoints>
+  </Resources>
+</ServiceManifest>
